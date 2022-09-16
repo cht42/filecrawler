@@ -19,3 +19,9 @@ services:
       context: rust
     volumes:
       - ${DIR}:/dir
+
+  nodejs:
+    build:
+      context: nodejs
+    volumes:
+      - ${DIR}:/dir

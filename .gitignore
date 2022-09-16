@@ -1,2 +1,3 @@
-.mypy-cache
+.mypy_cache
 .env
+node_modules
