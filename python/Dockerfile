@@ -6,4 +6,4 @@ COPY . /app
 
 WORKDIR /app
 
-CMD python /app/main.py /dir
+CMD python main.py /dir

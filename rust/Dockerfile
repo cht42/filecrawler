@@ -8,4 +8,4 @@ WORKDIR /app
 
 RUN cargo build --release
 
-CMD /app/target/release/filecrawler /dir
+CMD ./target/release/filecrawler /dir

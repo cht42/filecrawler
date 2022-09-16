@@ -8,4 +8,4 @@ WORKDIR /app
 
 RUN npm install
 
-CMD node filecrawler.js /dir
+CMD ./node_modules/ts-node/dist/bin.js filecrawler.ts /dir

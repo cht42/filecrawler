@@ -8,4 +8,4 @@ WORKDIR /app
 
 RUN go build -o filecrawler .
 
-CMD /app/filecrawler /dir
+CMD ./filecrawler /dir
