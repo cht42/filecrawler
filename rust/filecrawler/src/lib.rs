@@ -1,10 +1,10 @@
 use data_encoding::HEXLOWER;
+use dpc_pariter::IteratorExt;
 use sha2::{Digest, Sha256};
-use std::error::Error;
-use std::fs::DirEntry;
 use std::io::{BufReader, Read};
 use std::path::{Path, PathBuf};
 use std::{fs, io};
+use walkdir::{DirEntry, WalkDir};
 
 pub struct Config {
     pub dir: PathBuf,
@@ -22,10 +22,8 @@ impl Config {
     }
 }
 
-pub fn run(config: &Config) -> Result<(), Box<dyn Error>> {
-    visit_dirs(&config.dir, &calculate_sha256);
-
-    Ok(())
+pub fn run(config: &Config) -> Result<(), io::Error> {
+    visit_dirs(&config.dir)
 }
 
 fn sha256_digest(path: &PathBuf) -> io::Result<String> {
@@ -48,27 +46,28 @@ fn sha256_digest(path: &PathBuf) -> io::Result<String> {
 }
 
 pub fn calculate_sha256(path: &DirEntry) -> io::Result<()> {
-    let hash = sha256_digest(&path.path())?;
+    let hash = sha256_digest(&path.path().to_path_buf())?;
 
     println!("{:?} {:?}", path.path(), hash);
     Ok(())
 }
 
-pub fn visit_dirs(dir: &Path, cb: &dyn Fn(&DirEntry) -> io::Result<()>) -> io::Result<()> {
-    if dir.is_dir() {
-        for entry in fs::read_dir(dir)?.filter_map(Result::ok) {
-            let path = entry.path();
-            if path.is_dir() {
-                match visit_dirs(&path, cb) {
-                    Err(_) => println!("Error for dir {:?}", path),
-                    _ => continue,
-                };
-            } else {
-                cb(&entry).unwrap_or_else(|err| {
-                    println!("Problem with file {:?}: {}", path, err);
-                });
-            }
-        }
-    }
+pub fn visit_dirs(dir: &Path) -> io::Result<()> {
+    WalkDir::new(dir)
+        .into_iter()
+        .filter_map(Result::ok)
+        .parallel_map_custom(
+            |o| o.threads(8),
+            |entry| {
+                if entry.metadata().unwrap().is_file() {
+                    match calculate_sha256(&entry) {
+                        Err(err) => println!("Problem with file {:?}: {}", entry, err),
+                        _ => (),
+                    }
+                }
+            },
+        )
+        .for_each(drop);
+
     Ok(())
 }

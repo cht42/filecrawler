@@ -8,3 +8,5 @@ edition = "2021"
 [dependencies]
 sha2 = "0.10"
 data-encoding = "2.3.2"
+walkdir = "2.3.2"
+dpc-pariter = "0.5.1"
