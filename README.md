@@ -9,6 +9,7 @@ The program to implement is a file crawler that given a directory will iterate r
 - [x] python
 - [x] golang
 - [x] rust
+- [x] nodejs
 
 ## Run
 
@@ -20,4 +21,5 @@ Then, using **docker-compose**, you can run any implementations.
 docker-compose run python
 docker-compose run golang
 docker-compose run rust
+docker-compose run nodejs
 ```
