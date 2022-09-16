@@ -57,7 +57,7 @@ pub fn visit_dirs(dir: &Path) -> io::Result<()> {
         .into_iter()
         .filter_map(Result::ok)
         .parallel_map_custom(
-            |o| o.threads(8),
+            |o| o.threads(16),
             |entry| {
                 if entry.metadata().unwrap().is_file() {
                     match calculate_sha256(&entry) {

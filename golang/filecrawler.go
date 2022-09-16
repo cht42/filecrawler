@@ -8,7 +8,6 @@ import (
 	"io"
 	"os"
 	"path/filepath"
-	"runtime"
 	"time"
 )
 
@@ -61,7 +60,7 @@ func main() {
 
 	rootDir := os.Args[1]
 
-	totalWorker := runtime.NumCPU()
+	totalWorker := 16
 	wp := New(totalWorker)
 
 	ctx, cancel := context.WithCancel(context.TODO())
