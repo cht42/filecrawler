@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+
+  python:
+    build:
+      context: python
+    volumes:
+      - ${DIR}:/dir
+
+  golang:
+    build:
+      context: golang
+    volumes:
+      - ${DIR}:/dir
+
+  rust:
+    build:
+      context: rust
+    volumes:
+      - ${DIR}:/dir
