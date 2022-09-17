@@ -1,3 +1,6 @@
 .mypy_cache
 .env
 node_modules
+
+*.o
+cpp/filecrawler

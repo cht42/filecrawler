@@ -25,3 +25,9 @@ services:
       context: nodejs
     volumes:
       - ${DIR}:/dir
+
+  cpp:
+    build:
+      context: cpp
+    volumes:
+      - ${DIR}:/dir
