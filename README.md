@@ -12,6 +12,9 @@ The program to implement is a file crawler that given a directory will iterate r
 - [x] NodeJS
 - [x] C++
 - [x] Java
+- [] D
+- [] Ruby
+- [] Bash
 
 ## Run
 
