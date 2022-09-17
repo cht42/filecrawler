@@ -31,3 +31,9 @@ services:
       context: cpp
     volumes:
       - ${DIR}:/dir
+
+  java:
+    build:
+      context: java
+    volumes:
+      - ${DIR}:/dir

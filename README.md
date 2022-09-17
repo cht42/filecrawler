@@ -6,11 +6,12 @@ The program to implement is a file crawler that given a directory will iterate r
 
 ## Implementations
 
-- [x] python
-- [x] golang
-- [x] rust
-- [x] nodejs
+- [x] Python
+- [x] Golang
+- [x] Rust
+- [x] NodeJS
 - [x] C++
+- [x] Java
 
 ## Run
 
@@ -19,9 +20,5 @@ First, create a `.env` file and add the var `DIR` with a path to the directory o
 Then, using **docker-compose**, you can run any implementations.
 
 ```bash
-docker-compose run python
-docker-compose run golang
-docker-compose run rust
-docker-compose run nodejs
-docker-compose run cpp
+docker-compose run [python | golang | rust | nodejs | cpp | java]
 ```
