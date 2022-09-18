@@ -13,7 +13,7 @@ The program to implement is a file crawler that given a directory will iterate r
 - [x] C++
 - [x] Java
 - [ ] D
-- [ ] Ruby
+- [x] Ruby
 - [ ] Bash
 
 ## Run
@@ -23,5 +23,5 @@ First, create a `.env` file and add the var `DIR` with a path to the directory o
 Then, using **docker-compose**, you can run any implementations.
 
 ```bash
-docker-compose run [python | golang | rust | nodejs | cpp | java]
+docker-compose run [python | golang | rust | nodejs | cpp | java, ruby]
 ```

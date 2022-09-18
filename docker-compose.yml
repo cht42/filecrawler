@@ -37,3 +37,9 @@ services:
       context: java
     volumes:
       - ${DIR}:/dir
+
+  ruby:
+    build:
+      context: ruby
+    volumes:
+      - ${DIR}:/dir
